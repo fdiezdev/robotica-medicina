@@ -12,7 +12,7 @@ L1 = 2  % Longitud del segudo link [m]
 
 % ingresamos los datos de los ángulos
 theta1 = input("Ingrese el valor de tita1 en °: ")
-theta2 = input("Ingrese el valor de tita1 en °: ")
+theta2 = input("Ingrese el valor de tita2 en °: ")
 
 % validamos que los ángulos estén dentro de los límites de diseño:
 if(theta1 <= 0 || theta1 >= 180)
@@ -52,7 +52,7 @@ z = input("\n Ingrese valor de coordenada en eje Z[m]: ")
 % Verificamos que los valores sean válidos 
 if z < 0
     error("La coordenada Z no puede ser negativa")
-    
+end    
 % Verificamos que las coordenadas estén dentro del área de trabajo del
 % robot
 check = (x^2)+(y^2)+((z-L)^2)
@@ -63,5 +63,9 @@ end
 % Buscamos los valores
 theta2_inv = atan(y/x)
 theta1_inv = atan((-sqrt((x^2) + (y^2)))/(z - L))
+
+%% Mostrar
+theta2_inv = rad2deg(theta2_inv)
+theta1_inv = rad2deg(theta1_inv)
 
 fprintf('Valores de cinemática inversa (?1, ?2) = (%.2f, %.2f)', theta1_inv, theta2_inv);
