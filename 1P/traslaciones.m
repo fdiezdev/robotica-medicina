@@ -23,4 +23,5 @@ tr = [1 0   0   dx;...
   
 pp = tr * p
 
+%% Mostrar
 fprintf("\n El punto P = (%.2f,%.2f,%.2f) trasladado P'=(%.2f,%.2f,%.2f)", x,y,z,pp(1),pp(2),pp(3))

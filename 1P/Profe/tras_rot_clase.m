@@ -49,13 +49,13 @@ rotz = [cos(gama) -sin(gama) 0 0; ...  % Rotación en el plano X-Y
         0         0          0 1]
 
 %% Asignamos un valor a gama = pi (180 grados)
-gama = pi;
+gama = pi/2;
 
 % Evaluamos la matriz de rotación con gama = pi/2
 rotzz = eval(rotz)
 
 %% Definimos un nuevo punto
-p = [3 0 0 1]'  % Punto P en (3, 0, 0)
+p = [1.75 1.75 1.75 1]'  % Punto P en (3, 0, 0)
 %%
 % Aplicamos la rotación en Z al punto P
 pp = rotzz * p
@@ -114,10 +114,10 @@ rotx = [1 0         0          0; ...
         0 0         0          1]
 %%
     
-p = [0 0 3 1]'  % Definimos el punto P en el espacio
+p = [1.75 1.75 1.75 1]'  % Definimos el punto P en el espacio
 
 %% definimos el ángulo alfa 
-alfa = pi/4
+alfa = pi/2
 
 %% evaluamos la matriz de rotación con alfa 
 
