@@ -1,0 +1,75 @@
+%% Ejercicio tipo 2
+% sistema de coordenadas fijo en la casa denominado C
+% en la mano del robot se ubica el sistema R
+% en el avión hay otro sistma coordenado denominado A
+clear all; close all; clc;
+
+%% Parámetros del sistema
+% para el sistma R
+origen_R_C = [40 25 20 1]'    % coordenadas del origen de R expresadas en sistema C
+tita_R = deg2rad(45)          % rotación de R con respecto a sistema C
+% para el sistema A
+origen_A_R = [-350 -450 550 1]    % coordenadas del origen de A expresadas en sistema R
+tita_A = deg2rad(70)
+
+%% Ejercicio A
+% se pide calcular la distancia (x,y,z) desde la mano del robot a la caseta
+% sabiendo que el sistema R está ubicado
+
+% los valores de (x,y,z) que tengo ahora son suponiendo fijo el sistema de
+% la caseta - debo definir una matriz de transformación homogénea
+
+trasCR = [1 0   0   origen_R_C(1);
+          0 1   0   origen_R_C(2);
+          0 0   1   origen_R_C(3);
+          0 0   0   1]; % traslación del origen de la caseta a la mano del robot
+% defino matriz de rotación en el eje Z
+rotz = [ cos(tita_R)  -sin(tita_R)   0  0;
+       sin(tita_R)   cos(tita_R)   0    0;
+       0            0            1  0;
+       0    0   0   1];
+% Luego la matriz de transformación homogénea que me permite pasar del
+% sistema de la mano del robot a la caseta es:
+H_RC = trasCR * rotz
+
+% la inversa me permite pasar puntos del sistema supuesto fijo (caseta) a
+% la mano del robot
+H_RC_inv = inv(H_RC)
+
+% En la componente traslacional de la matriz inversa vemos la distancia de
+% la caseta a la mano del robot visto desde la caseta
+%% Ejercicio B
+% ahora se pide las coordenadas del sistema C visto desde A
+% para eso necesito la matriz que me exprese puntos del sistema A en
+% coordendas del sistema C
+
+trasRA = [1 0   0   origen_A_R(1);
+          0 1   0   origen_A_R(2);
+          0 0   1   origen_A_R(3);
+          0 0   0   1]; % traslación del sistema C para convertirse en A
+
+rotzz = [ cos(tita_A)  -sin(tita_A)   0  0;
+       sin(tita_A)   cos(tita_A)   0    0;
+       0            0            1  0;
+       0    0   0   1]; % rotación de R para convertirse en A
+   
+% ahora la matriz para expresar puntos de A vistos desde R
+H_AR = trasRA * rotzz
+% si tengo un punto expresado en A lo paso a coordenadas de R con esta
+% matriz
+
+% como yo necesito expresar coordenadas de R (el origen R) en coordendas de
+% A, entonces calculo la inversa:
+H_AR_inv = inv(H_AR) % esta matriz me permite expresar puntos vistos desde R en coordendas de A
+
+% el componente traslacional de la inversa H_AR_inv me da la distancia de
+% un sistema a otro
+
+T = H_RC * H_AR
+%% Ejercicio C
+% se pide dar las coordendas del niño (en R) vistas desde el sistema del
+% avión A
+
+% usando la matriz
+
+   
