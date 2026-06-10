@@ -6,11 +6,11 @@ clear all; close all; clc;
 
 %% Parámetros del sistema
 % para el sistma R
-origen_R_C = [40 25 20 1]'    % coordenadas del origen de R expresadas en sistema C
-tita_R = deg2rad(45)          % rotación de R con respecto a sistema C
+origen_R_C = [30 20 20 1]'    % coordenadas del origen de R expresadas en sistema C
+tita_R = pi/2                 % rotación de R con respecto a sistema C
 % para el sistema A
-origen_A_R = [-350 -450 550 1]    % coordenadas del origen de A expresadas en sistema R
-tita_A = deg2rad(70)
+origen_A_R = [100 100 -10 1]'    % coordenadas del origen de A expresadas en sistema R
+tita_A = -pi/4
 
 %% Ejercicio A
 % se pide calcular la distancia (x,y,z) desde la mano del robot a la caseta
